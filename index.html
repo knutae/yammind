@@ -21,9 +21,9 @@
 	text-align: center;
 	vertical-align: middle;
 }
-button {
+.buttonRow {
 	padding: 5px;
-	margin-left: 100px;
+	margin-left: 50px;
 	margin-bottom: 10px;
 }
 -->
@@ -31,14 +31,11 @@ button {
     </head>
     <body>
         <h1>MasterMind Clone?</h1>
-		<button id="doGuess">Guess!</button>
+		<p class="buttonRow">
+			<button id="doGuess">Guess!</button>
+			<button id="doReset">New Game</button>
+		</p>
 		<table class="board">
-			<tr id="solution">
-				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
-				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
-				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
-				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
-			</tr>
 		</table>
     </body>
 </html>

@@ -22,8 +22,16 @@ function generateSecretCode(length) {
 	return code;
 }
 
-//var secretCode = [4, 4, 5, 1];
 var secretCode = generateSecretCode(codeLength);
+
+var solutionRowHtml = '\
+<tr id="solution"> \
+	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
+	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
+	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
+	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
+</tr>';
+ 
 
 var newRowHtml = '\
 <tr class="guess"> \
@@ -114,18 +122,28 @@ function revealAnswer() {
 	}
 };
 
-// add first row
-addRow();
+function resetGame() {
+	secretCode = generateSecretCode(codeLength);
+	$('.board').empty();
+	$('.board').append(solutionRowHtml);
+	addRow();
+}
 
 $('#doGuess').click(function() {
 	var solved = showFeedback();
 	if (solved) {
-		//alert("solved!")
 		revealAnswer();
 	}
 	else {
 		addRow();
 	}
 });
+
+$('#doReset').click(function() {
+	resetGame();
+});
+
+// initialize
+resetGame();
 
 });
