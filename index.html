@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>MasterMind</title>
+		<script type="text/javascript" src="lib/jquery/jquery-1.4.2.js"></script>
+		<script type="text/javascript" src="mm.js"></script>
+	<style type="text/css">
+<!--
+.board td {
+	width: 55px;
+	height: 55px;
+	background-color: #CC6633;
+	text-align: center;
+	vertical-align: middle;
+}
+.feedback td {
+	width: 50px;
+	height: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+button {
+	padding: 5px;
+	margin-left: 100px;
+	margin-bottom: 10px;
+}
+-->
+	</style>
+    </head>
+    <body>
+        <h1>MasterMind Clone?</h1>
+		<button id="doGuess">Guess!</button>
+		<table class="board">
+			<tr id="solution">
+				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
+				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
+				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
+				<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>
+			</tr>
+		</table>
+    </body>
+</html>
