@@ -74,8 +74,11 @@ function pegClick(event) {
 	}
 
 	var cellPos = $(cell).offset();
+	var cellWidth = $(cell).width();
 	var cellHeight = $(cell).height();
-	var newLeft = cellPos.left;
+	var selectorWidth = $('#selector').width();
+	var newLeft = (cellPos.left + cellWidth/2) - (selectorWidth/2);
+	newLeft = Math.max(0, newLeft);
 	var newTop = cellPos.top + cellHeight;
 	if (activePegIndex != index) {
 		// animate out selector, then in in new pos
@@ -165,8 +168,6 @@ function prepareSelector() {
 	selector.empty();
 	tmphtml = '';
 	for (var col = 0; col < numColors; col++) {
-		if (col > 0)
-			tmphtml += '<br/>';
 		tmphtml += '<img src="' + pegImages[col] + '" alt="' + col + '"/>';
 	}
 	//alert("Appending: " + tmphtml);
