@@ -14,6 +14,7 @@ var pegImages = [
 
 var numColors = pegImages.length;
 var codeLength = 5;
+var activePegIndex = -1;
 
 function generateSecretCode(length) {
 	var code = new Array();
@@ -54,6 +55,42 @@ function generateRowHtml(numColors, numPegs) {
 	return rowHtml;
 }
 
+function setActiveGuess(pegIndex, color) {
+	activeGuess[pegIndex] = color;
+	var img = $('.guess:last .peg:eq(' + pegIndex + ') img');
+	img.attr('src', pegImages[color]);
+	img.attr('alt', color.toString());
+}
+
+function pegClick(event) {
+	var cell = event.target.parentNode;
+	var index = cell.cellIndex;
+	if (activePegIndex == index && $('#selector').is(':visible')) {
+		// hide selector
+		$('#selector').slideUp('fast', function() {
+			activePegIndex = -1;
+		});
+		return;
+	}
+
+	var cellPos = $(cell).offset();
+	var cellHeight = $(cell).height();
+	var newLeft = cellPos.left;
+	var newTop = cellPos.top + cellHeight;
+	if (activePegIndex != index) {
+		// animate out selector, then in in new pos
+		$('#selector').slideUp(50, function() {
+			$('#selector').css({'left': newLeft, 'top': newTop}).slideDown('fast');
+			activePegIndex = index;
+		});
+	}
+	else {
+		// just animate in in correct pos
+		$('#selector').css({'left': newLeft, 'top': newTop}).slideDown('fast');
+		activePegIndex = index;
+	}
+}
+
 function addRow() {
 	// unbind any old guess events
 	$('.guess:last .peg img').unbind();
@@ -62,18 +99,15 @@ function addRow() {
 	$('.board').append(generateRowHtml(numColors, codeLength));
 	
 	// bind new click event
-	$('.guess:last .peg img').click(function(event) {
-		var img = event.target;
-		var index = img.parentNode.cellIndex;
-		activeGuess[index] = (activeGuess[index] + 1) % 8;
-		$(img).attr('src', pegImages[activeGuess[index]]);
-		$(img).attr('alt', activeGuess[index].toString());
-	});
+	$('.guess:last .peg img').click(pegClick);
 	
 	// reset active guess
 	activeGuess = new Array();
 	for (var i = 0; i < codeLength; i++)
 		activeGuess[i] = 0;
+	// reset misc
+	activePegIndex = -1;
+	$('#selector').hide();
 };
 
 function showFeedback() {
@@ -125,10 +159,33 @@ function revealAnswer() {
 	}
 };
 
+function prepareSelector() {
+	selector = $('#selector');
+	selector.hide();
+	selector.empty();
+	tmphtml = '';
+	for (var col = 0; col < numColors; col++) {
+		if (col > 0)
+			tmphtml += '<br/>';
+		tmphtml += '<img src="' + pegImages[col] + '" alt="' + col + '"/>';
+	}
+	//alert("Appending: " + tmphtml);
+	selector.append(tmphtml);
+	$('#selector img').click(function(event) {
+		var img = event.target;
+		var color = parseInt($(img).attr('alt'));
+		if (activePegIndex >= 0) {
+			setActiveGuess(activePegIndex, color);
+			$('#selector').slideUp('fast');
+		}
+	});
+}
+
 function resetGame() {
 	secretCode = generateSecretCode(codeLength);
 	$('.board').empty();
 	$('.board').append(generateSolutionRowHtml(codeLength));
+	prepareSelector();
 	addRow();
 }
 
