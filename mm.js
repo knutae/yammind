@@ -13,7 +13,7 @@ var pegImages = [
 ];
 
 var numColors = pegImages.length;
-var codeLength = 4;
+var codeLength = 5;
 
 function generateSecretCode(length) {
 	var code = new Array();
@@ -24,41 +24,42 @@ function generateSecretCode(length) {
 
 var secretCode = generateSecretCode(codeLength);
 
-var solutionRowHtml = '\
-<tr id="solution"> \
-	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
-	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
-	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
-	<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td> \
-</tr>';
- 
+function generateSolutionRowHtml(numPegs) {
+	var html = '<tr id="solution">';
+	for (var i = 0; i < numPegs; i++) {
+		html += '<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>';
+	}
+	html += '</tr>';
+	return html;
+}
 
-var newRowHtml = '\
-<tr class="guess"> \
-	<td class="peg"><img src="img/peg-red.png" alt="0" /></td> \
-	<td class="peg"><img src="img/peg-red.png" alt="0" /></td> \
-	<td class="peg"><img src="img/peg-red.png" alt="0" /></td> \
-	<td class="peg"><img src="img/peg-red.png" alt="0" /></td> \
-	<td> \
-		<table class="feedback"> \
-			<tr> \
-				<td><img src="img/feedback-hole.png" alt="o" /></td> \
-				<td><img src="img/feedback-hole.png" alt="o" /></td> \
-			</tr> \
-			<tr> \
-				<td><img src="img/feedback-hole.png" alt="o" /></td> \
-				<td><img src="img/feedback-hole.png" alt="o" /></td> \
-			</tr> \
-		</table> \
-	</td> \
-</tr>';
+var cellHtml = '<td class="peg"><img src="img/peg-red.png" alt="0" /></td>';
+
+function generateRowHtml(numColors, numPegs) {
+	var rowHtml = '<tr class="guess">';
+	for (var i = 0; i < numPegs; i++) {
+		rowHtml += cellHtml;
+	}
+	rowHtml += '<td><table class="feedback">';
+	// two rows of feedback holes
+	var rowLengths = [Math.ceil(numPegs / 2), Math.floor(numPegs / 2)]; 
+	for (var row = 0; row < 2; row++) {
+		rowHtml += '<tr>';
+		for (var col = 0; col < rowLengths[row]; col++) {
+			rowHtml += '<td><img src="img/feedback-hole.png" alt="o" /></td>';
+		}
+		rowHtml += '</tr>';
+	}
+	rowHtml += '</table></td></tr>';
+	return rowHtml;
+}
 
 function addRow() {
 	// unbind any old guess events
 	$('.guess:last .peg img').unbind();
 	
 	// add new active row
-	$('.board').append(newRowHtml);
+	$('.board').append(generateRowHtml(numColors, codeLength));
 	
 	// bind new click event
 	$('.guess:last .peg img').click(function(event) {
@@ -70,7 +71,9 @@ function addRow() {
 	});
 	
 	// reset active guess
-	activeGuess = [0, 0, 0, 0];
+	activeGuess = new Array();
+	for (var i = 0; i < codeLength; i++)
+		activeGuess[i] = 0;
 };
 
 function showFeedback() {
@@ -125,7 +128,7 @@ function revealAnswer() {
 function resetGame() {
 	secretCode = generateSecretCode(codeLength);
 	$('.board').empty();
-	$('.board').append(solutionRowHtml);
+	$('.board').append(generateSolutionRowHtml(codeLength));
 	addRow();
 }
 
