@@ -163,7 +163,7 @@ function revealAnswer() {
 };
 
 function prepareSelector() {
-	selector = $('#selector');
+	var selector = $('#selector');
 	selector.hide();
 	selector.empty();
 	tmphtml = '';
