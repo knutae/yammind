@@ -45,6 +45,7 @@ function generateSolutionRowHtml(numPegs) {
 	for (var i = 0; i < numPegs; i++) {
 		html += '<td class="peg"><img src="img/peg-hidden.png"/></td>';
 	}
+	html += '<td></td>';
 	html += '</tr>';
 	return html;
 }
