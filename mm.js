@@ -11,8 +11,21 @@ var pegImages = [
 	'img/peg-white.png',
 	'img/peg-black.png'
 ];
-// add hole at index -1, this is okay since we don't use foreach-loops
-pegImages[-1] = 'img/peg-hole.png';
+
+function pegImageToColor(imgPath) {
+	for (var i = 0; i < pegImages.length; i++) {
+		if (imgPath == pegImages[i])
+			return i;
+	}
+	return -1; // indicates hole
+}
+
+function colorToPegImage(color) {
+	if (color >= 0 && color < pegImages.length)
+		return pegImages[color];
+	else
+		return 'img/peg-hole.png';
+}
 
 var numColors = pegImages.length;
 var codeLength = 4;
@@ -30,13 +43,13 @@ var secretCode = generateSecretCode(codeLength);
 function generateSolutionRowHtml(numPegs) {
 	var html = '<tr id="solution">';
 	for (var i = 0; i < numPegs; i++) {
-		html += '<td class="peg"><img src="img/peg-hidden.png" alt="?" /></td>';
+		html += '<td class="peg"><img src="img/peg-hidden.png"/></td>';
 	}
 	html += '</tr>';
 	return html;
 }
 
-var cellHtml = '<td class="peg"><img src="img/peg-hole.png" alt="-1" /></td>';
+var cellHtml = '<td class="peg"><img src="img/peg-hole.png"/></td>';
 
 function generateRowHtml(numColors, numPegs) {
 	var rowHtml = '<tr class="guess">';
@@ -49,7 +62,7 @@ function generateRowHtml(numColors, numPegs) {
 	for (var row = 0; row < 2; row++) {
 		rowHtml += '<tr>';
 		for (var col = 0; col < rowLengths[row]; col++) {
-			rowHtml += '<td><img src="img/feedback-hole.png" alt="o" /></td>';
+			rowHtml += '<td><img src="img/feedback-hole.png"/></td>';
 		}
 		rowHtml += '</tr>';
 	}
@@ -60,7 +73,7 @@ function generateRowHtml(numColors, numPegs) {
 function setActiveGuess(pegIndex, color) {
 	activeGuess[pegIndex] = color;
 	var img = $('.guess:last .peg:eq(' + pegIndex + ') img');
-	img.attr('src', pegImages[color]);
+	img.attr('src', colorToPegImage(color));
 	img.attr('alt', color.toString());
 }
 
@@ -176,14 +189,14 @@ function prepareSelector() {
 	selector.empty();
 	tmphtml = '';
 	for (var col = 0; col < numColors; col++) {
-		tmphtml += '<img src="' + pegImages[col] + '" alt="' + col + '"/>';
+		tmphtml += '<img src="' + pegImages[col] + '"/>';
 	}
-	tmphtml += '<img src="img/peg-hole.png" alt="-1"/>';
+	tmphtml += '<img src="img/peg-hole.png"/>';
 	//alert("Appending: " + tmphtml);
 	selector.append(tmphtml);
 	$('#selector img').click(function(event) {
 		var img = event.target;
-		var color = parseInt($(img).attr('alt'));
+		var color = pegImageToColor($(img).attr('src'));
 		if (activePegIndex >= 0) {
 			setActiveGuess(activePegIndex, color);
 			$('#selector').slideUp('fast');
