@@ -49,15 +49,49 @@
 	padding-bottom: 2px;
 }
 
+.optionsTable td {
+	padding: 0px 10px 0px 10px;
+}
+
 -->
 	</style>
     </head>
     <body>
         <h1>MasterMind Clone?</h1>
-		<p class="buttonRow">
+		<table class="optionsTable">
+			<tr>
+				<td>Code Length</td>
+				<td>
+					<select id="codeLength">
+						<option>3</option>
+						<option selected="selected">4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Number of Colors</td>
+				<td>
+					<select id="numColors">
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option selected="selected">8</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<div class="buttonRow">
 			<button id="doGuess">Guess!</button>
 			<button id="doReset">New Game</button>
-		</p>
+		</div>
 		<table class="board">
 		</table>
 		<div id="selector">

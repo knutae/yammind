@@ -206,6 +206,9 @@ function prepareSelector() {
 }
 
 function resetGame() {
+	codeLength = parseInt($('#codeLength').val());
+	numColors = parseInt($('#numColors').val());
+	
 	secretCode = generateSecretCode(codeLength);
 	$('.board').empty();
 	$('.board').append(generateSolutionRowHtml(codeLength));
