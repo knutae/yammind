@@ -11,6 +11,8 @@ var pegImages = [
 	'img/peg-white.png',
 	'img/peg-black.png'
 ];
+// add hole at index -1, this is okay since we don't use foreach-loops
+pegImages[-1] = 'img/peg-hole.png';
 
 var numColors = pegImages.length;
 var codeLength = 4;
@@ -34,7 +36,7 @@ function generateSolutionRowHtml(numPegs) {
 	return html;
 }
 
-var cellHtml = '<td class="peg"><img src="img/peg-red.png" alt="0" /></td>';
+var cellHtml = '<td class="peg"><img src="img/peg-hole.png" alt="-1" /></td>';
 
 function generateRowHtml(numColors, numPegs) {
 	var rowHtml = '<tr class="guess">';
@@ -112,7 +114,7 @@ function addRow() {
 	// reset active guess
 	activeGuess = new Array();
 	for (var i = 0; i < codeLength; i++)
-		activeGuess[i] = 0;
+		activeGuess[i] = -1;
 	// reset misc
 	activePegIndex = -1;
 	$('#selector').hide();
@@ -176,6 +178,7 @@ function prepareSelector() {
 	for (var col = 0; col < numColors; col++) {
 		tmphtml += '<img src="' + pegImages[col] + '" alt="' + col + '"/>';
 	}
+	tmphtml += '<img src="img/peg-hole.png" alt="-1"/>';
 	//alert("Appending: " + tmphtml);
 	selector.append(tmphtml);
 	$('#selector img').click(function(event) {
