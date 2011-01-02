@@ -13,7 +13,7 @@ var pegImages = [
 ];
 
 var numColors = pegImages.length;
-var codeLength = 5;
+var codeLength = 4;
 var activePegIndex = -1;
 
 function generateSecretCode(length) {
@@ -94,9 +94,14 @@ function pegClick(event) {
 	}
 }
 
+function hideAndUnbindSelector() {
+	$('#selector').hide();
+	$('.guess:last .peg img').unbind();
+}
+
 function addRow() {
 	// unbind any old guess events
-	$('.guess:last .peg img').unbind();
+	hideAndUnbindSelector();
 	
 	// add new active row
 	$('.board').append(generateRowHtml(numColors, codeLength));
@@ -155,6 +160,7 @@ function showFeedback() {
 };
 
 function revealAnswer() {
+	hideAndUnbindSelector();
 	for (var index = 0; index < secretCode.length; index++) {
 		var img = $('#solution td:eq(' + index + ') img');
 		img.attr('src', pegImages[secretCode[index]]);
