@@ -3,61 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>MasterMind</title>
+        <title>Yammind</title>
 		<script type="text/javascript" src="lib/jquery/jquery-1.4.2.js"></script>
-		<script type="text/javascript" src="mm.js"></script>
-	<style type="text/css">
-<!--
-.board {
-	background-color: #884422;
-	border-spacing: 0px 2px;
-	padding: 3px 5px 3px 5px;
-}
-.board td {
-	width: 55px;
-	height: 55px;
-	background-color: #CC6633;
-	text-align: center;
-	vertical-align: middle;
-}
-.feedback td {
-	width: 50px;
-	height: 20px;
-	text-align: center;
-	vertical-align: middle;
-}
-.buttonRow {
-	padding: 5px;
-	margin-left: 50px;
-	margin-bottom: 10px;
-}
-
-#selector {
-	position: absolute;
-	top: 100px;
-	left: 500px;
-	width: 168px;
-	border: thin;
-	border-style: solid;
-	background-color: #999999;
-	text-align: center;
-}
-#selector img {
-	padding-left: 4px;
-	padding-right: 4px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-}
-
-.optionsTable td {
-	padding: 0px 10px 0px 10px;
-}
-
--->
-	</style>
+		<script type="text/javascript" src="yammind.js"></script>
+		<link href="yammind.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>MasterMind Clone?</h1>
+        <h1>Yammind</h1>
 		<table class="optionsTable">
 			<tr>
 				<td>Code Length</td>
@@ -88,12 +40,14 @@
 				</td>
 			</tr>
 		</table>
-		<div class="buttonRow">
-			<button id="doGuess">Guess!</button>
-			<button id="doReset">New Game</button>
-		</div>
-		<table class="board">
-		</table>
+		<p>
+			<div class="buttonRow">
+				<button id="doGuess">Check!</button>
+				<button id="doReset">New Game</button>
+			</div>
+			<table class="board">
+			</table>
+		</p>
 		<div id="selector">
 		</div>
     </body>
