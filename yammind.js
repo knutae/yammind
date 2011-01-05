@@ -71,11 +71,21 @@ function generateRowHtml(numColors, numPegs) {
 	return rowHtml;
 }
 
+function countActivePegs() {
+	var count = 0;
+	for (var i = 0; i < codeLength; i++) {
+		if (activeGuess[i] >= 0)
+			count++;
+	}
+	return count;
+}
+
 function setActiveGuess(pegIndex, color) {
 	activeGuess[pegIndex] = color;
 	var img = $('.guess:last .peg:eq(' + pegIndex + ') img');
 	img.attr('src', colorToPegImage(color));
 	img.attr('alt', color.toString());
+	$('#doGuess').attr('disabled', countActivePegs() == 0);
 }
 
 function pegClick(event) {
@@ -132,6 +142,7 @@ function addRow() {
 	// reset misc
 	activePegIndex = -1;
 	$('#selector').hide();
+	$('#doGuess').attr('disabled', true);
 };
 
 function showFeedback() {
@@ -177,6 +188,7 @@ function showFeedback() {
 
 function revealAnswer() {
 	hideAndUnbindSelector();
+	$('#doGuess').attr('disabled', true);
 	for (var index = 0; index < secretCode.length; index++) {
 		var img = $('#solution td:eq(' + index + ') img');
 		img.attr('src', pegImages[secretCode[index]]);
