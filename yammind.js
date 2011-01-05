@@ -189,6 +189,7 @@ function showFeedback() {
 function revealAnswer() {
 	hideAndUnbindSelector();
 	$('#doGuess').attr('disabled', true);
+	$('#doReset').attr('disabled', false);
 	for (var index = 0; index < secretCode.length; index++) {
 		var img = $('#solution td:eq(' + index + ') img');
 		img.attr('src', pegImages[secretCode[index]]);
@@ -226,6 +227,9 @@ function resetGame() {
 	$('.board').append(generateSolutionRowHtml(codeLength));
 	prepareSelector();
 	addRow();
+	
+	// cannot give up until after the first guess 
+	$('#doGiveUp').attr('disabled', true);
 }
 
 $('#doGuess').click(function() {
@@ -235,11 +239,19 @@ $('#doGuess').click(function() {
 	}
 	else {
 		addRow();
+		// after first guess, disallow reset until won or given up 
+		$('#doReset').attr('disabled', true);
+		$('#doGiveUp').attr('disabled', false);
 	}
 });
 
 $('#doReset').click(function() {
 	resetGame();
+});
+
+$('#doGiveUp').click(function() {
+	revealAnswer();
+	$('#doGiveUp').attr('disabled', true);
 });
 
 // initialize
