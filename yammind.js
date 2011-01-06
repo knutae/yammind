@@ -258,6 +258,10 @@ $('#toggleHelp').click(function() {
 	$('.help').slideToggle();
 });
 
+$('#toggleOptions').click(function() {
+	$('.options').slideToggle();
+});
+
 // initialize
 resetGame();
 
