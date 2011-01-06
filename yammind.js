@@ -254,6 +254,10 @@ $('#doGiveUp').click(function() {
 	$('#doGiveUp').attr('disabled', true);
 });
 
+$('#toggleHelp').click(function() {
+	$('.help').slideToggle();
+});
+
 // initialize
 resetGame();
 
