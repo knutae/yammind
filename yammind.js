@@ -85,7 +85,9 @@ function setActiveGuess(pegIndex, color) {
 	var img = $('.guess:last .peg:eq(' + pegIndex + ') img');
 	img.attr('src', colorToPegImage(color));
 	img.attr('alt', color.toString());
-	$('#doGuess').attr('disabled', countActivePegs() == 0);
+	var anySelected = (countActivePegs() == 0);
+	$('#doGuess').attr('disabled', anySelected);
+	$('#doClear').attr('disabled', anySelected);
 }
 
 function pegClick(event) {
@@ -143,6 +145,7 @@ function addRow() {
 	activePegIndex = -1;
 	$('#selector').hide();
 	$('#doGuess').attr('disabled', true);
+	$('#doClear').attr('disabled', true);
 };
 
 function showFeedback() {
@@ -189,6 +192,7 @@ function showFeedback() {
 function revealAnswer() {
 	hideAndUnbindSelector();
 	$('#doGuess').attr('disabled', true);
+	$('#doClear').attr('disabled', true);
 	$('#doReset').attr('disabled', false);
 	for (var index = 0; index < secretCode.length; index++) {
 		var img = $('#solution td:eq(' + index + ') img');
@@ -243,6 +247,11 @@ $('#doGuess').click(function() {
 		$('#doReset').attr('disabled', true);
 		$('#doGiveUp').attr('disabled', false);
 	}
+});
+
+$('#doClear').click(function() {
+	for (var i = 0; i < codeLength; i++)
+		setActiveGuess(i, -1);
 });
 
 $('#doReset').click(function() {
