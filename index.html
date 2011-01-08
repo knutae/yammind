@@ -12,22 +12,18 @@
         <h1>
         	<font color="red">Y</font><font color="green">a</font><font color="blue">m</font>m<font color="purple">i</font><font color="red">n</font><font color="green">d</font>
 		</h1>
-		<div class="help">
-			The object of the game is to find the hidden color code.
-			<ul>
-				<li>Click on each hole and select a color from the popup menu.</li>
-				<li>Click on "Check" to test your current guess.</li>
-				<li>Black and white indicators to the right will show how close your guess was:
-				<ul>
-					<li><img src="img/feedback-black.png" alt="Black"/>
-					indicates that a correct color is in the correct position.</li>
-					<li><img src="img/feedback-white.png" alt="White"/>
-					indicates that a correct color is in the wrong position.</li>
-				</ul>
-				</li>
-				<li>Use this feedback to guess the secret code in as few attempts as possible!</li>
-			</ul>
-		</div>
+		<p>
+			<div class="buttonRow">
+				<button id="doGuess">Check!</button>
+				<button id="doClear">Clear Row</button>
+				<button id="doReset">New Game</button>
+				<button id="doGiveUp">Give Up</button>
+				<button id="toggleOptions">Options</button>
+				<button id="toggleHelp">Help</button>
+			</div>
+			<table class="board">
+			</table>
+		</p>
 		<div class="options">
 		Options will be applied when starting a new game. 
 		<table class="optionsTable">
@@ -61,18 +57,22 @@
 			</tr>
 		</table>
 		</div>
-		<p>
-			<div class="buttonRow">
-				<button id="doGuess">Check!</button>
-				<button id="doClear">Clear Row</button>
-				<button id="doReset">New Game</button>
-				<button id="doGiveUp">Give Up</button>
-				<button id="toggleOptions">Options</button>
-				<button id="toggleHelp">Help</button>
-			</div>
-			<table class="board">
-			</table>
-		</p>
+		<div class="help">
+			The object of the game is to find the hidden color code.
+			<ul>
+				<li>Click on each hole and select a color from the popup menu.</li>
+				<li>Click on "Check" to test your current guess.</li>
+				<li>Black and white indicators to the right will show how close your guess was:
+				<ul>
+					<li><img src="img/feedback-black.png" alt="Black"/>
+					indicates that a correct color is in the correct position.</li>
+					<li><img src="img/feedback-white.png" alt="White"/>
+					indicates that a correct color is in the wrong position.</li>
+				</ul>
+				</li>
+				<li>Use this feedback to guess the secret code in as few attempts as possible!</li>
+			</ul>
+		</div>
 		<div id="selector">
 		</div>
     </body>
