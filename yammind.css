@@ -10,6 +10,7 @@ h1 {
 	border-spacing: 0px 2px;
 	padding: 3px 5px 3px 5px;
 }
+
 .board td {
 	width: 55px;
 	height: 55px;
@@ -49,6 +50,10 @@ h1 {
 }
 #selector img {
 	padding: 2px 4px 2px 4px; 
+}
+
+button#doGiveUp {
+	margin-bottom: 20px;
 }
 
 .options {
