@@ -194,6 +194,7 @@ function revealAnswer() {
 	$('#doGuess').attr('disabled', true);
 	$('#doClear').attr('disabled', true);
 	$('#doReset').attr('disabled', false);
+	$('#doGiveUp').attr('disabled', true);
 	for (var index = 0; index < secretCode.length; index++) {
 		var img = $('#solution td:eq(' + index + ') img');
 		img.attr('src', pegImages[secretCode[index]]);
@@ -260,7 +261,6 @@ $('#doReset').click(function() {
 
 $('#doGiveUp').click(function() {
 	revealAnswer();
-	$('#doGiveUp').attr('disabled', true);
 });
 
 $('#toggleHelp').click(function() {
