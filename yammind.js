@@ -235,6 +235,9 @@ function resetGame() {
 	
 	// cannot give up until after the first guess 
 	$('#doGiveUp').attr('disabled', true);
+	
+	// hide options when starting a new game, without animation for now
+	$('.options').hide();
 }
 
 $('#doGuess').click(function() {
