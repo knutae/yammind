@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 var activeGuess = []; // initialized in addRow()
+var lastGuess = [];
 var pegImages = [
 	'img/peg-red.png',
 	'img/peg-green.png',
@@ -138,6 +139,7 @@ function addRow() {
 	$('.guess:last .peg img').click(pegClick);
 	
 	// reset active guess
+	lastGuess = activeGuess;
 	activeGuess = new Array();
 	for (var i = 0; i < codeLength; i++)
 		activeGuess[i] = -1;
@@ -195,6 +197,7 @@ function revealAnswer() {
 	$('#doClear').attr('disabled', true);
 	$('#doReset').attr('disabled', false);
 	$('#doGiveUp').attr('disabled', true);
+	$('#doCopyLast').attr('disabled', true);
 	for (var index = 0; index < secretCode.length; index++) {
 		var img = $('#solution td:eq(' + index + ') img');
 		img.attr('src', pegImages[secretCode[index]]);
@@ -232,9 +235,11 @@ function resetGame() {
 	$('.board').append(generateSolutionRowHtml(codeLength));
 	prepareSelector();
 	addRow();
+	lastGuess = [];
 	
-	// cannot give up until after the first guess 
+	// cannot give up or copy last row until after the first guess 
 	$('#doGiveUp').attr('disabled', true);
+	$('#doCopyLast').attr('disabled', true);
 	
 	// hide options when starting a new game, without animation for now
 	$('.options').hide();
@@ -250,12 +255,20 @@ $('#doGuess').click(function() {
 		// after first guess, disallow reset until won or given up 
 		$('#doReset').attr('disabled', true);
 		$('#doGiveUp').attr('disabled', false);
+		$('#doCopyLast').attr('disabled', false);
 	}
 });
 
 $('#doClear').click(function() {
 	for (var i = 0; i < codeLength; i++)
 		setActiveGuess(i, -1);
+});
+
+$('#doCopyLast').click(function() {
+	if (lastGuess.length < codeLength)
+		return;
+	for (var i = 0; i < codeLength; i++)
+		setActiveGuess(i, lastGuess[i]);
 });
 
 $('#doReset').click(function() {

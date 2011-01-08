@@ -1,5 +1,5 @@
 body {
-	margin-left: 115px;
+	margin-left: 135px;
 }
 
 h1 {
@@ -25,15 +25,14 @@ h1 {
 	vertical-align: middle;
 }
 .buttonRow {
+	margin: 0;
 	padding: 0;
+	width: 115px;
+	margin-left: -125px;
 	float: left;
-	width: 100px;
-	margin-left: -105px;
 }
 .buttonRow button {
-	width: 90px;
-	/*margin: 3px 0px 0px 5px;*/
-	/*margin-left: -50px;*/
+	width: 115px;
 	margin-bottom: 5px;
 	font-family: sans-serif;
 }
