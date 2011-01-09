@@ -24,11 +24,15 @@
     <linearGradient
        id="linearGradient3811">
       <stop
-         style="stop-color:#421900;stop-opacity:1;"
+         style="stop-color:#000000;stop-opacity:0.49107143;"
          offset="0"
          id="stop3813" />
       <stop
-         style="stop-color:#b66000;stop-opacity:1;"
+         id="stop3772"
+         offset="0.5"
+         style="stop-color:#7f7f7f;stop-opacity:0;" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.16470589;"
          offset="1"
          id="stop3815" />
     </linearGradient>
@@ -127,13 +131,13 @@
      transform="translate(0,-1004.3622)">
     <path
        sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;stroke:#803300;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#000000;fill-opacity:1;stroke:#333332;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path3849"
        sodipodi:cx="29.8125"
        sodipodi:cy="29.6875"
        sodipodi:rx="9.1875"
        sodipodi:ry="9.1875"
-       d="m 39,29.6875 a 9.1875,9.1875 0 1 1 -18.375,0 9.1875,9.1875 0 1 1 18.375,0 z"
+       d="m 39,29.6875 c 0,5.074116 -4.113384,9.1875 -9.1875,9.1875 -5.074116,0 -9.1875,-4.113384 -9.1875,-9.1875 0,-5.074116 4.113384,-9.1875 9.1875,-9.1875 5.074116,0 9.1875,4.113384 9.1875,9.1875 z"
        transform="matrix(1.3061224,0,0,1.3061224,-14.938774,989.58669)" />
   </g>
 </svg>

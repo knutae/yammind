@@ -6,7 +6,7 @@ h1 {
 	font-family: sans-serif;
 }
 .board {
-	background-color: #884422;
+	background-color: #666633;
 	border-spacing: 0px 2px;
 	padding: 3px 5px 3px 5px;
 }
@@ -14,7 +14,7 @@ h1 {
 .board td {
 	width: 55px;
 	height: 55px;
-	background-color: #CC6633;
+	background-color: #888855;
 	text-align: center;
 	vertical-align: middle;
 }
