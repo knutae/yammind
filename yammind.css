@@ -5,6 +5,27 @@ body {
 h1 {
 	font-family: sans-serif;
 }
+
+.titleArea * {
+	padding: 0;
+	margin: 0;
+}
+
+.title {
+	font-family: sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	height: 62px;
+}
+
+.facebook {
+	float: right;
+	width: 200px;
+	height: 62px;
+	border: none;
+	overflow:hidden;
+}
+
 .board {
 	background-color: #666633;
 	border-spacing: 0px 2px;

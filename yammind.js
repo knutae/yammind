@@ -28,8 +28,8 @@ function colorToPegImage(color) {
 		return 'img/peg-hole.png';
 }
 
-var numColors = pegImages.length;
-var codeLength = 4;
+var numColors = 4;
+var codeLength = 6;
 var activePegIndex = -1;
 
 function generateSecretCode(length) {
